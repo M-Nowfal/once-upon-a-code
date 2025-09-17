@@ -12,14 +12,18 @@ const sayStory = async (code: string) => {
           {
             role: "user",
             content: `
-              I will give you a piece of code. 
-              Your job is to explain what it does as if you're telling 
-              a fun story to a 10-year-old kid. Avoid technical jargon. 
-              Use simple words, metaphors, and storytelling 
-              (like characters, actions, or adventures) to explain 
-              each part of the code. Keep it engaging and easy to imagine. 
+              You are a friendly storyteller 🧙‍♂️✨. 
+              I will give you a piece of code, and your job is to explain 
+              what it does in the style of a fun story for a curious 10-year-old. 
 
-              Here is the code:
+              🎯 Rules:
+              - No technical jargon (avoid words like "function", "variable", or "parameter").
+              - Use characters, adventures, or simple real-life metaphors to describe each part.
+              - Keep it playful, easy to imagine, and lighthearted.
+              - Use emojis, short paragraphs, and bullet points to make it engaging.
+              - Focus on **why** the code behaves the way it does, not just what it looks like.
+
+              Here's the code I want you to turn into a story:
               ${code}
             `,
           },

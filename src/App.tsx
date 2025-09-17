@@ -27,6 +27,10 @@ const App = () => {
         <Chat chats={chats} />
         {loading && <div className="text-lg font-bold my-5 animate-pulse absolute bottom-0 left-[50%] -translate-x-[50%]">Thinking a Story...</div>}
       </div>
+      {chats.length === 0 && <div className="absolute bottom-[50%] text-center">
+        <h1 className="text-3xl md:text-5xl font-bold">Once upon a Code</h1>
+        <p className="mt-5 font-semibold">Enter your code and make it an interesting story</p>
+      </div>}
       <InputBox
         code={code}
         setCode={setCode}

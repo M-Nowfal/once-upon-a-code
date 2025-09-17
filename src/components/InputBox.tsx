@@ -9,13 +9,26 @@ type InputBoxTypes = {
 const InputBox = ({ code, setCode, onSubmit }: InputBoxTypes) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Auto-resize textarea dynamically
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.style.height = "auto"; // reset before calculating
+      textareaRef.current.style.height = "auto";
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   }, [code]);
+
+  useEffect(() => {
+    const input = textareaRef.current;
+    if (!input) return;
+
+    const handleFocus = () => {
+      setTimeout(() => {
+        input.scrollIntoView({ behavior: "smooth" });
+      }, 300); 
+    };
+
+    input.addEventListener("focus", handleFocus);
+    return () => input.removeEventListener("focus", handleFocus);
+  }, []);
 
   return (
     <div className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[95%] max-w-5xl flex items-end gap-2 shadow-md bg-white/90 backdrop-blur-md p-2 rounded-3xl">
@@ -24,6 +37,7 @@ const InputBox = ({ code, setCode, onSubmit }: InputBoxTypes) => {
         className="w-full text-base sm:text-lg outline-0 resize-none max-h-[20rem] px-3 py-2 rounded-xl border border-gray-200 transition-all overflow-auto scrollbar-hide"
         value={code}
         onChange={(e) => setCode(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && onSubmit()}
         placeholder="Paste your code here..."
       />
       <button
