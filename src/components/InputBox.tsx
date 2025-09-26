@@ -37,7 +37,6 @@ const InputBox = ({ code, setCode, onSubmit }: InputBoxTypes) => {
         className="w-full text-base sm:text-lg outline-0 resize-none max-h-[20rem] px-3 py-2 rounded-xl border border-gray-200 transition-all overflow-auto scrollbar-hide"
         value={code}
         onChange={(e) => setCode(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && onSubmit()}
         placeholder="Paste your code here..."
       />
       <button

@@ -12,12 +12,13 @@ const App = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const onSubmit = async () => {
-    setCode("");
+    if (!code.trim()) return;
     setChats(prev => [...prev, { role: "user", message: code }]);
     setLoading(true);
     const story = await sayStory(code);
     setLoading(false);
     setChats(prev => [...prev, { role: "ai", message: story }]);
+    setCode("");
   };
 
   return (
